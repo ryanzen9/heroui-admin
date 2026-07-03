@@ -1,8 +1,7 @@
-import { FC, useCallback } from "react";
+import { MoonFilledIcon, SunFilledIcon } from "@/icons";
 import { useTheme } from "@heroui/react";
 import clsx from "clsx";
-
-import { SunFilledIcon, MoonFilledIcon } from "@/components/icons";
+import { FC, useCallback } from "react";
 
 export interface ThemeSwitchProps {
   className?: string;

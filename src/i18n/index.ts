@@ -2,10 +2,18 @@ import i18next, { InitOptions } from "i18next";
 import { initReactI18next } from "react-i18next";
 import commonZhCN from "./locales/zh-CN/common.json";
 import exceptionZhCN from "./locales/zh-CN/exception.json";
+import { LanguageType } from "./types";
 
-export const DEFAULT_LANGUAGE = "zh-CN";
+export const DEFAULT_LANGUAGE: LanguageType = "zh-CN";
 
-export const i18nResources = {
+type ResourcesType = {
+  common: typeof commonZhCN;
+  exception: typeof exceptionZhCN;
+};
+
+export const i18nResources: {
+  [key in LanguageType]?: ResourcesType;
+} = {
   "zh-CN": {
     common: commonZhCN,
     exception: exceptionZhCN,

@@ -1,6 +1,6 @@
-import { GithubIcon } from "@/components/icons";
 import { subtitle, title } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
+import { GithubIcon } from "@/icons";
 
 export default function IndexPage() {
   return (

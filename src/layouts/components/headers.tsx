@@ -3,6 +3,8 @@
 import { Button, InputGroup, Kbd, Link, TextField } from "@heroui/react";
 import { useState } from "react";
 
+import { ThemeSwitch } from "@/components/theme-switch";
+import { siteConfig } from "@/config/site";
 import {
   DiscordIcon,
   GithubIcon,
@@ -10,9 +12,7 @@ import {
   Logo,
   SearchIcon,
   TwitterIcon,
-} from "@/components/icons";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { siteConfig } from "@/config/site";
+} from "@/icons";
 
 export const Headers = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

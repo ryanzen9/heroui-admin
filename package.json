@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -15,13 +16,15 @@
     "antd": "^6.5.0",
     "clsx": "2.1.1",
     "i18next": "^26.3.4",
+    "motion": "^12.42.2",
     "nprogress": "^0.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^6.1.2",
     "react-i18next": "^17.0.8",
     "react-router": "^8.1.0",
-    "vite-plugin-svgr": "^5.2.0"
+    "vite-plugin-svgr": "^5.2.0",
+    "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@eslint/compat": "1.2.8",

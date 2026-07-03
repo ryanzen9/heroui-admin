@@ -5,7 +5,7 @@ import IndexPage from "@/pages/index";
 import PricingPage from "@/pages/pricing";
 import { RouteObject } from "react-router";
 
-export const coreRouters = [
+const routers = [
   {
     index: true,
     Component: IndexPage,
@@ -52,3 +52,5 @@ export const coreRouters = [
   //     ],
   //   },
 ] satisfies RouteObject[];
+
+export default routers;

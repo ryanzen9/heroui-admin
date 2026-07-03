@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 // vite-plugin-svgr 是一个 Vite 插件，用于把 .svg 文件转换成 React 组件
 // 同时需要配置 vite.config.ts 和 tsconfig.json，添加 svgrPlugin() 插件，添加 #src 别名
 import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";
+import { usePreferencesStore } from "@/stores/user-preferences";
 
 const { VITE_BASE_HOME_PATH } = import.meta.env;
 
@@ -17,11 +18,9 @@ export function PageError({ error, resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
   const { t } = useTranslation();
   // 获取用户是否启用动态标题的设置
-  //   const enableDynamicTitle = usePreferencesStore(
-  //     (state) => state.enableDynamicTitle,
-  //   );
-
-  const enableDynamicTitle = true;
+  const enableDynamicTitle = usePreferencesStore(
+    (state) => state.enableDynamicTitle,
+  );
 
   const goHome = () => {
     resetErrorBoundary();

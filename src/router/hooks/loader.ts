@@ -20,8 +20,6 @@ export async function useTransitionLoader() {
    * @zh 初次加载路由时，开始进度条动画
    * @en Start the progress bar animation when loading routes for the first time
    */
-  // 读取用户偏好
-  //   const { transitionProgress } = usePreferencesStore.getState();
   const transitionProgress = true;
   if (transitionProgress) {
     NProgress.start();

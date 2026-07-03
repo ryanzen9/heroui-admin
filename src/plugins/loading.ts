@@ -1,3 +1,6 @@
+import { usePreferencesStore } from "@/stores/user-preferences";
+import { isDarkTheme } from "@/utils/is-dark-theme";
+
 export const loadingId = "loading-e8a3a985";
 export const loadingContainerId = "loading-container-e8a3a985";
 /**
@@ -5,10 +8,8 @@ export const loadingContainerId = "loading-container-e8a3a985";
  * https://github.com/user-attachments/assets/110701a8-2cf4-4e5f-a07e-b832da4e1586
  */
 export function setupLoading() {
-  // const isDarkTheme = isDarkTheme(usePreferencesStore.getState().theme);
-  const isDarkTheme = true;
-  //   const themeColorPrimary = usePreferencesStore.getState().themeColorPrimary;
-  const themeColorPrimary = "#409eff"; // Default primary color if usePreferencesStore is not available
+  const isDark = isDarkTheme(usePreferencesStore.getState().theme);
+  const themeColorPrimary = usePreferencesStore.getState().themeColorPrimary;
   /**
    * @see https://github.com/pure-admin/vue-pure-admin/blob/cd21f1e050011d8f761094bf8a1e110fb8a33959/index.html#L20-L81
    * This CSS code from https://github.com/pure-admin/vue-pure-admin
@@ -25,7 +26,7 @@ export function setupLoading() {
 	justify-content: center;
 	height: 100vh;
 	width: 100vw;
-	background-color: ${isDarkTheme ? "#181818" : "transparent"};
+	background-color: ${isDark ? "#181818" : "transparent"};
 	overflow: hidden;
 }
 #${loadingId},
