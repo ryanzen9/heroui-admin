@@ -42,21 +42,6 @@ export const Headers = () => {
             <Logo />
             <p className="font-bold text-inherit">ACME</p>
           </a>
-          {/* <ul className="hidden lg:flex gap-4 ml-2">
-            {siteConfig.navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  className={clsx(
-                    "text-foreground hover:text-accent transition-colors",
-                    "data-[active=true]:text-accent data-[active=true]:font-medium",
-                  )}
-                  href={item.href}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul> */}
           <button
             aria-expanded={isMenuOpen}
             aria-label="Toggle menu"
@@ -86,6 +71,7 @@ export const Headers = () => {
               )}
             </svg>
           </button>
+
           <div className="hidden lg:flex">{searchInput}</div>
         </div>
 

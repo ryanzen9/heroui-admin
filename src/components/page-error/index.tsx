@@ -1,0 +1,66 @@
+import type { FallbackProps } from "react-error-boundary";
+
+import { ArrowLeftOutlined, ReloadOutlined } from "@ant-design/icons";
+import { Button, Result, Space, Typography } from "antd";
+
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
+// https://undraw.co/search
+// vite-plugin-svgr 是一个 Vite 插件，用于把 .svg 文件转换成 React 组件
+// 同时需要配置 vite.config.ts 和 tsconfig.json，添加 svgrPlugin() 插件，添加 #src 别名
+import BugFixing from "#src/assets/svg/undraw-bug-fixing.svg?react";
+
+const { VITE_BASE_HOME_PATH } = import.meta.env;
+
+export function PageError({ error, resetErrorBoundary }: FallbackProps) {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  // 获取用户是否启用动态标题的设置
+  //   const enableDynamicTitle = usePreferencesStore(
+  //     (state) => state.enableDynamicTitle,
+  //   );
+
+  const enableDynamicTitle = true;
+
+  const goHome = () => {
+    resetErrorBoundary();
+    navigate(VITE_BASE_HOME_PATH);
+  };
+  const refresh = () => {
+    location.reload();
+  };
+
+  useEffect(() => {
+    if (enableDynamicTitle) {
+      document.title = t("exception.pageErrorTitle");
+    }
+  }, [enableDynamicTitle]);
+
+  return (
+    <Result
+      status="error"
+      icon={
+        <div className="w-7/12 md:w-3/12 xl:w-2/12 inline-block">
+          <BugFixing />
+        </div>
+      }
+      title={(error as any)?.message ?? t("exception:pageErrorTitle")}
+      // subTitle={error.stack}
+      extra={
+        <Space size={20}>
+          <Button icon={<ArrowLeftOutlined />} type="primary" onClick={goHome}>
+            {t("common:backHome")}
+          </Button>
+          <Button icon={<ReloadOutlined rotate={90} />} onClick={refresh}>
+            {t("common:refresh")}
+          </Button>
+        </Space>
+      }
+    >
+      <Typography.Paragraph type="warning" className="text-center">
+        {(error as any)?.stack}
+      </Typography.Paragraph>
+    </Result>
+  );
+}
