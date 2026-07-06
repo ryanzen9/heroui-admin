@@ -1,12 +1,9 @@
 import logo from "#src/assets/svg/logo.svg?url";
 
-import { Col, Grid, Row, theme } from "antd";
-import { clsx } from "clsx";
+import { Col, Row, theme } from "antd";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 
-import { useLayoutMenu } from "@/hooks/use-layout-menu";
 import { usePreferences } from "@/hooks/use-preferences";
 import { LanguageButton } from "@/layouts/layout-header/components/language-button";
 import { ThemeButton } from "@/layouts/layout-header/components/theme-button";
@@ -16,16 +13,9 @@ import { FormComponentMapType, FormModeContext } from "./form-mode-context";
 
 export default function Login() {
   const { isDark } = usePreferences();
+  //   const { pageLayout, layoutButtonTrigger } = useLayoutMenu();
   const { token } = theme.useToken();
-  const { t } = useTranslation();
-  const screens = Grid.useBreakpoint();
   const [formMode, setFormMode] = useState<FormComponentMapType>("login");
-  const { pageLayout, layoutButtonTrigger } = useLayoutMenu();
-  const isALignLeft = useMemo(() => pageLayout === "layout-left", [pageLayout]);
-  const isAlignCenter = useMemo(
-    () => pageLayout === "layout-center",
-    [pageLayout],
-  );
 
   const providedValue = useMemo(
     () => ({ formMode, setFormMode }),
@@ -36,6 +26,7 @@ export default function Login() {
       style={{
         backgroundColor: token.colorBgContainer,
       }}
+      className="flex h-full w-full flex-col items-center justify-center overflow-hidden"
     >
       <header className="z-10 absolute flex items-center right-3 top-3 left-3">
         <div className="text-colorText flex flex-1 items-center">
@@ -45,52 +36,15 @@ export default function Login() {
           </h1>
         </div>
         <div className="flex items-center">
-          {layoutButtonTrigger}
           <ThemeButton size="large" />
           <LanguageButton size="large" className="px-2.75" />
         </div>
       </header>
-      <div className="flex items-center overflow-hidden h-full">
-        <Row
-          className={clsx("h-screen w-full", {
-            "flex-row-reverse": isALignLeft,
-          })}
-        >
-          {/* <Col
-            xs={0}
-            sm={0}
-            lg={15}
-            style={{
-              backgroundImage: `radial-gradient(${token.colorBgContainer}, ${isDark ? token.colorBgBlur : token.colorPrimaryBg})`,
-            }}
-            className={clsx({ hidden: isAlignCenter })}
-          >
-            <div className="flex flex-col items-center justify-center h-full gap-3">
-              <Banner className="h-64 motion-safe:animate-bounce-in-down-out-up" />
-              <div className="text-xl text-colorTextSecondary mt-6 font-sans lg:text-2xl">
-                {t("authority:pageTitle")}
-              </div>
-              <div className="text-colorTextTertiary mt-2">
-                {t("authority:pageDescription")}
-              </div>
-            </div>
-          </Col> */}
 
-          <Col
-            xs={24}
-            sm={24}
-            lg={isAlignCenter ? 24 : 9}
-            className="relative flex flex-col justify-center px-6 py-10 xl:px-8"
-            style={
-              isAlignCenter || (!screens.xl && !screens.xxl && !screens.lg)
-                ? {
-                    backgroundImage: `radial-gradient(${token.colorBgContainer}, ${token.colorPrimaryBg})`,
-                  }
-                : {}
-            }
-          >
-            {/* <LayoutFooter className="w-full absolute bottom-3 left-1/2 -translate-x-1/2" /> */}
-            <div className="w-full sm:mx-auto md:max-w-md">
+      <div>
+        <Row className="h-screen w-full">
+          <Col className="relative flex flex-col justify-center px-6 py-10 xl:px-8">
+            <div className="w-full sm:mx-auto md:max-w-md border border-solid">
               <FormModeContext value={providedValue}>
                 <AnimatePresence mode="wait" initial={false}>
                   {/* initial 进入状态， animate 最终状态， exit 退出状态  transition motion 相关动画配置项 */}

@@ -62,6 +62,7 @@ export function PasswordLogin() {
   return (
     <>
       {contextLoadingHolder}
+
       <Space orientation="vertical">
         <h2 className="text-colorText mb-3 text-3xl font-bold leading-9 tracking-tight lg:text-4xl">
           {t("authority.welcomeBack")}
